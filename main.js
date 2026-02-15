@@ -1,19 +1,25 @@
 // function for each input validation
 const validateEmail = (input) => {
-    console.log(input.value)
-    // if input value contains http or https, then return true
-    return (
-        input.value.includes("@") ||
-        input.value.includes(".com") ||
-        input.value.includes(".net") ||
-        input.value.includes(".edu")
-    );
+    const value = input.value.trim();
+    const parts = value.split("@");
 
+    if (parts.length !== 2) return false;
+
+    const [local, domain] = parts;
+    if (!local || !domain) return false;
+
+    const allowedDomains = [".com", ".net", ".gov", ".edu"]
+
+    const hasValidExtension = allowedDomains.some((ext) =>
+        domain.endsWith(ext)
+    )
+
+    return hasValidExtension
 }
 
 // function for removing active/inactive classes from input fields when focused
 const removeClassProperty = (element) => {
-   element.removeAttribute("class")
+    element.removeAttribute("class")
 }
 
 // function for each input validation
@@ -63,7 +69,7 @@ form.querySelectorAll("input").forEach((input) => {
         console.log(e.currentTarget.name)
         const target = e.currentTarget
 
-        
+
 
         const targetName = e.currentTarget.name;
         // if statements for each input
