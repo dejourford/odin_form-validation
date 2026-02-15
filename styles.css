@@ -31,4 +31,8 @@ form {
     width: 100%;
     cursor: pointer;
 }
+
+form input.inactive {
+    border: solid red;
+}
 /* Media Queries */
