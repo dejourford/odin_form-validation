@@ -1,62 +1,95 @@
 // function for each input validation
-const validateEmail = () => {
-    console.log("email validated");
+const validateEmail = (input) => {
+    console.log(input.value)
+    // if input value contains http or https, then return true
+    return (
+        input.value.includes("@") ||
+        input.value.includes(".com") ||
+        input.value.includes(".net") ||
+        input.value.includes(".edu")
+    );
+
+}
+
+// function for removing active/inactive classes from input fields when focused
+const removeClassProperty = (element) => {
+   element.removeAttribute("class")
 }
 
 // function for each input validation
-const validateCountry = () => {
+const validateCountry = (input) => {
     console.log("country validated");
 }
 
 // function for each input validation
-const validateZipCode = () => {
+const validateZipCode = (input) => {
     console.log("zip code validated");
 }
 
 // function for each input validation
-const validatePassword = () => {
+const validatePassword = (input) => {
     console.log("password validated");
 }
 
 // function for each input validation
-const validatePasswordConfirmation = () => {
+const validatePasswordConfirmation = (input) => {
     console.log("password confirmed");
 }
 
 
 // create listener for form submit or cancel
-document.addEventListener("submit", (e) => {
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submitted")
-    
+
 })
 
 // listener for cancel button
-const form = document.querySelector("form");
 document.querySelector("#cancel").addEventListener("click", () => {
     form.reset();
 })
 
 // listener for input fields
-document.querySelectorAll("input").forEach((input) => {
+form.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("focus", () => {
+        removeClassProperty(input);
+    })
+})
+
+form.querySelectorAll("input").forEach((input) => {
     input.addEventListener("blur", (e) => {
+
         console.log(e.currentTarget.name)
-const targetName = e.currentTarget.name;
+        const target = e.currentTarget
+
+        
+
+        const targetName = e.currentTarget.name;
         // if statements for each input
-        if (targetName === "email") {
-            validateEmail();
+        if (targetName === "email" && validateEmail(target)) {
+            target.classList.add("active")
+        } else {
+            target.classList.add("inactive")
         }
         if (targetName === "country") {
-            validateCountry();
+            validateCountry(target);
         }
         if (targetName === "zip code") {
-            validateZipCode();
+            validateZipCode(target);
         }
         if (targetName === "password") {
-            validatePassword();
+            validatePassword(target);
         }
         if (targetName === "password confirmation") {
-            validatePasswordConfirmation();
+            validatePasswordConfirmation(target);
+        }
+
+        // clear class from input if blank
+        if (target.value === "") {
+            console.log(target.value)
+            console.log(input)
+            removeClassProperty(input);
         }
     })
 })
