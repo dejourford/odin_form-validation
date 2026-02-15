@@ -17,11 +17,6 @@ const validateEmail = (input) => {
     return hasValidExtension
 }
 
-// function for removing active/inactive classes from input fields when focused
-const removeClassProperty = (element) => {
-    element.removeAttribute("class")
-}
-
 // function for each input validation
 const validateCountry = (input) => {
     console.log("country validated");
@@ -42,6 +37,10 @@ const validatePasswordConfirmation = (input) => {
     console.log("password confirmed");
 }
 
+// function for removing active/inactive classes from input fields when focused
+const removeClassProperty = (element) => {
+    element.removeAttribute("class")
+}
 
 // create listener for form submit or cancel
 const form = document.querySelector("form");
