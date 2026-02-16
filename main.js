@@ -31,8 +31,15 @@ const validateCountry = () => {
 }
 
 // function for each input validation
-const validateZipCode = (input) => {
-    console.log("zip code validated");
+const validateZipCode = () => {
+
+    const zipCodeInput = document.querySelector("#zipCode");
+    removeClassProperty(zipCodeInput)
+    
+    if (zipCodeInput.value.length > 5 || zipCodeInput.value.length < 5) {
+        zipCodeInput.classList.add("inactive")
+    } else  {zipCodeInput.classList.add("active")}
+
 }
 
 // function for each input validation
@@ -86,7 +93,7 @@ form.querySelectorAll("input").forEach((input) => {
             target.classList.add("inactive")
         }
         if (targetName === "zip code") {
-            validateZipCode(target);
+            validateZipCode();
         }
         if (targetName === "password") {
             validatePassword(target);
