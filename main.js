@@ -18,8 +18,16 @@ const validateEmail = (input) => {
 }
 
 // function for each input validation
-const validateCountry = (input) => {
-    console.log("country validated");
+const selectCountryElement = document.querySelector("#select-country");
+
+const validateCountry = () => {
+
+    selectCountryElement.addEventListener("change", () => {
+    const selectedValue = selectCountryElement.value;
+    console.log(selectedValue);
+
+    return countries.includes(selectedValue)
+})
 }
 
 // function for each input validation
@@ -77,9 +85,6 @@ form.querySelectorAll("input").forEach((input) => {
         } else {
             target.classList.add("inactive")
         }
-        if (targetName === "country") {
-            validateCountry(target);
-        }
         if (targetName === "zip code") {
             validateZipCode(target);
         }
@@ -99,3 +104,20 @@ form.querySelectorAll("input").forEach((input) => {
     })
 })
 
+// add select options to country
+const countries = [
+  "United States", "Canada", "Mexico", "Brazil", "Argentina",
+  "United Kingdom", "Ireland", "France", "Germany", "Italy",
+  "Spain", "Portugal", "Netherlands", "Belgium", "Sweden",
+  "Norway", "Denmark", "Finland", "Poland", "Switzerland",
+  "Australia", "New Zealand", "Japan", "China", "India",
+  "South Korea", "Thailand", "Vietnam", "Philippines",
+  "South Africa", "Nigeria", "Kenya", "Egypt", "Morocco",
+  "Saudi Arabia", "United Arab Emirates", "Israel", "Turkey"
+];
+
+countries.forEach((country) => {
+    const option = document.createElement("option");
+    option.textContent = country;
+    selectCountryElement.append(option)
+})
