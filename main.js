@@ -23,22 +23,23 @@ const selectCountryElement = document.querySelector("#select-country");
 const validateCountry = () => {
 
     selectCountryElement.addEventListener("change", () => {
-    const selectedValue = selectCountryElement.value;
-    console.log(selectedValue);
+        const selectedValue = selectCountryElement.value;
+        console.log(selectedValue);
 
-    return countries.includes(selectedValue)
-})
+        return countries.includes(selectedValue)
+    })
 }
 
 // function for each input validation
+const zipCodeInput = document.querySelector("#zipCode");
+
 const validateZipCode = () => {
 
-    const zipCodeInput = document.querySelector("#zipCode");
     removeClassProperty(zipCodeInput)
-    
+
     if (zipCodeInput.value.length > 5 || zipCodeInput.value.length < 5) {
         zipCodeInput.classList.add("inactive")
-    } else  {zipCodeInput.classList.add("active")}
+    } else { zipCodeInput.classList.add("active") }
 
 }
 
@@ -113,14 +114,14 @@ form.querySelectorAll("input").forEach((input) => {
 
 // add select options to country
 const countries = [
-  "United States", "Canada", "Mexico", "Brazil", "Argentina",
-  "United Kingdom", "Ireland", "France", "Germany", "Italy",
-  "Spain", "Portugal", "Netherlands", "Belgium", "Sweden",
-  "Norway", "Denmark", "Finland", "Poland", "Switzerland",
-  "Australia", "New Zealand", "Japan", "China", "India",
-  "South Korea", "Thailand", "Vietnam", "Philippines",
-  "South Africa", "Nigeria", "Kenya", "Egypt", "Morocco",
-  "Saudi Arabia", "United Arab Emirates", "Israel", "Turkey"
+    "United States", "Canada", "Mexico", "Brazil", "Argentina",
+    "United Kingdom", "Ireland", "France", "Germany", "Italy",
+    "Spain", "Portugal", "Netherlands", "Belgium", "Sweden",
+    "Norway", "Denmark", "Finland", "Poland", "Switzerland",
+    "Australia", "New Zealand", "Japan", "China", "India",
+    "South Korea", "Thailand", "Vietnam", "Philippines",
+    "South Africa", "Nigeria", "Kenya", "Egypt", "Morocco",
+    "Saudi Arabia", "United Arab Emirates", "Israel", "Turkey"
 ];
 
 countries.forEach((country) => {
