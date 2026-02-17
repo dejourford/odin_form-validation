@@ -44,8 +44,18 @@ const validateZipCode = () => {
 }
 
 // function for each input validation
-const validatePassword = (input) => {
+const passwordInput = document.querySelector("#password-input")
+
+const validatePassword = () => {
+    removeClassProperty(passwordInput)
+    
     console.log("password validated");
+    console.log(passwordInput.value.length);
+    if (passwordInput.value.length === 0) {
+        passwordInput.classList.add("inactive")
+    } else {
+        passwordInput.classList.add("active")
+    }
 }
 
 // function for each input validation
@@ -84,30 +94,19 @@ form.querySelectorAll("input").forEach((input) => {
         console.log(e.currentTarget.name)
         const target = e.currentTarget
 
-
-
         const targetName = e.currentTarget.name;
         // if statements for each input
-        if (targetName === "email" && validateEmail(target)) {
-            target.classList.add("active")
-        } else {
+        if (targetName === "email" && !validateEmail(target)) {
             target.classList.add("inactive")
-        }
+        } 
         if (targetName === "zip code") {
             validateZipCode();
         }
         if (targetName === "password") {
-            validatePassword(target);
+            validatePassword();
         }
         if (targetName === "password confirmation") {
             validatePasswordConfirmation(target);
-        }
-
-        // clear class from input if blank
-        if (target.value === "") {
-            console.log(target.value)
-            console.log(input)
-            removeClassProperty(input);
         }
     })
 })
