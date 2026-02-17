@@ -14,6 +14,10 @@ const validateEmail = (input) => {
         domain.endsWith(ext)
     )
 
+    if (hasValidExtension) {
+        input.classList.add("active")
+    }
+
     return hasValidExtension
 }
 
@@ -59,8 +63,25 @@ const validatePassword = () => {
 }
 
 // function for each input validation
+const passwordConfirmationInput = document.querySelector("#password-confirmation-input")
+
 const validatePasswordConfirmation = (input) => {
     console.log("password confirmed");
+
+    removeClassProperty(passwordConfirmationInput)
+    
+    console.log("password confirmation validated");
+    console.log(passwordConfirmationInput.value.length);
+    if (passwordConfirmationInput.value.length === 0) {
+        passwordConfirmationInput.classList.add("inactive")
+    } else {
+        passwordConfirmationInput.classList.add("active")
+    }
+}
+
+// function to verify passwords match
+const checkPasswords = (validatedPassword) => {
+    console.log(validatedPassword)
 }
 
 // function for removing active/inactive classes from input fields when focused
@@ -74,11 +95,27 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("form submitted")
 
-})
+    const allInputs = document.querySelectorAll("input")
+    console.log(allInputs)
+    
+   const allInputAreActive = [...allInputs].every(input =>
+    input.classList.contains("active")
+);
 
-// listener for cancel button
-document.querySelector("#cancel").addEventListener("click", () => {
-    form.reset();
+
+const passwordInput = document.querySelector("#password-input")
+    const passwordConfirmationInput = document.querySelector("#password-confirmation-input")
+    if (allInputAreActive && passwordInput.value === passwordConfirmationInput.value) { 
+        alert("High Five!")
+        form.reset();
+    }
+
+
+    console.log(allInputAreActive)
+
+    
+
+    
 })
 
 // listener for input fields
@@ -109,6 +146,11 @@ form.querySelectorAll("input").forEach((input) => {
             validatePasswordConfirmation(target);
         }
     })
+})
+
+// listener for cancel button
+document.querySelector("#cancel").addEventListener("click", () => {
+    form.reset();
 })
 
 // add select options to country
